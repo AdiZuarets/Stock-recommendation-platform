@@ -45,14 +45,28 @@ This will:
 
 ### Running the API
 
-Once the data collection is running, start the API server:
+Once the data collection is running (by running the stock sampler in another terminal), start the API server:
 
 ```bash
 python -m app.API
 ```
 
-The API will be available at:  
-[http://localhost:5000](http://localhost:5000)
+This will launch a local API server on your machine.
+
+🔎 To test it, open your browser and visit:
+
+```
+http://127.0.0.1:5000/is-handle-and-cup/AAPL
+```
+
+If that doesn’t work, try:
+
+```
+http://localhost:5000/is-handle-and-cup/AAPL
+```
+
+This will ask the API:  
+“Does the stock for AAPL match the cup-and-handle pattern?”
 
 ---
 
