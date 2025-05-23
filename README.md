@@ -68,6 +68,8 @@ http://localhost:5000/is-handle-and-cup/AAPL
 This will ask the API:  
 “Does the stock for AAPL match the cup-and-handle pattern?”
 
+You should see a JSON response. You can replace `AAPL` with any company symbol you're tracking (e.g., `GOOGL`, `MSFT`).
+
 ---
 
 ## 🔌 API Endpoints
