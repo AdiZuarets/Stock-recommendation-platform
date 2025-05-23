@@ -1,28 +1,24 @@
-
 # 📈 Stock Recommendation Platform
 
-A Python application that collects stock price data for the "Magnificent 7" tech companies, stores it in a local database, and analyzes them for the "cup and handle" pattern — a popular technical indicator in stock trading. The application exposes an API for querying results.
+A Python application that collects stock price data for the "Magnificent 7" tech companies, stores it in a local SQLite database, and analyzes it for the **cup and handle** pattern — a popular technical indicator in stock trading. The application exposes an API for querying detection results.
 
 ---
 
 ## ⚙️ Installation
 
-1. Clone this repository:
-
+1. **Clone this repository:**
    ```bash
-   git clone https://github.com/yourusername/stock-recommendation-platform.git
+   git clone https://github.com/AdiZuarets/stock-recommendation-platform.git
    cd stock-recommendation-platform
    ```
 
-2. Create a virtual environment (recommended):
-
+2. **Create a virtual environment (recommended):**
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate      # On Windows: .venv\Scripts\activate
    ```
 
-3. Install dependencies:
-
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
@@ -33,18 +29,19 @@ A Python application that collects stock price data for the "Magnificent 7" tech
 
 ### Running the Stock Sampler
 
-The stock sampler collects data from Yahoo Finance every 5 minutes when the market is open:
+The stock sampler collects data from Yahoo Finance every 5 minutes during U.S. market hours.
 
 ```bash
 python -m app.stock_sampler
 ```
 
 This will:
-
 - Create the database if it doesn't exist
 - Collect initial data for all companies in the Magnificent 7
-- Schedule data collection every 5 minutes
+- Schedule automatic data collection every 5 minutes
 - Remove data older than 3 days (configurable in `app/config.py`)
+
+---
 
 ### Running the API
 
@@ -61,12 +58,11 @@ The API will be available at:
 
 ## 🔌 API Endpoints
 
-| Endpoint | Method | Description | Example |
-|---------|--------|-------------|---------|
-| `/is-handle-and-cup/{company_symbol}` | GET | Checks if the given company's stock shows a cup and handle pattern | `/is-handle-and-cup/AAPL` |
+| Endpoint                          | Method | Description                                                  | Example                     |
+|-----------------------------------|--------|--------------------------------------------------------------|-----------------------------|
+| `/is-handle-and-cup/{symbol}`    | GET    | Checks if the stock for `{symbol}` shows a cup & handle pattern | `/is-handle-and-cup/AAPL`  |
 
-### Example Response
-
+### Example Response:
 ```json
 {
   "Company": "AAPL",
@@ -79,7 +75,6 @@ The API will be available at:
 ## 🛠 Configuration
 
 Edit `app/config.py` to modify:
-
 - Market open/close hours
 - Data retention period (in days)
 - Minimum number of data points required for pattern detection
@@ -111,5 +106,5 @@ stock-recommendation-platform/
 
 ## 🧠 Notes
 
-- AI assistance (GPT) was used in development. Prompt history will be shared separately by email.
-- Ensure `companies_stocks.db` is excluded from Git tracking using `.gitignore`.
+- The database file `companies_stocks.db` is excluded from Git tracking via `.gitignore`.
+- This app is designed to run **completely locally** — no cloud or third-party storage involved.
