@@ -32,15 +32,12 @@ def check_cup_and_handle_pattern(prices_list) -> bool:
     if len(prices_list) < config.MINIMUM_DATA_POINTS:
         return False
 
-    print(prices_list)
-
     # Smooth the data if we have enough samples
     if len(prices_list) >= 20:
         prices = smooth_data(np.array(prices_list))
     else:
         prices = prices_list
 
-    print(prices)
 
     # Base case - if we want to check the first sample as well
     prices = [0] + prices
